@@ -1,6 +1,6 @@
 ---
 name: dbt-model-auditor
-description: Audits a dbt project on Snowflake for naming, tests, documentation, structure, contracts and source freshness, and measures one defect class no linter catches: two columns sharing a name but not a meaning. Use for "audit this dbt project", "same column name, different meaning?", "is this model tested and documented?". Read-only: reports measurements and recommendations, never renames or edits anything.
+description: Audits a dbt project on Snowflake for naming, tests, documentation, structure, contracts and source freshness, and measures one defect class no linter catches (two columns sharing a name but not a meaning). Use for "audit this dbt project", "same column name, different meaning?", "is this model tested and documented?". Read-only. It reports measurements and recommendations and never renames or edits anything.
 tools: Read, Grep, Glob, Bash
 ---
 

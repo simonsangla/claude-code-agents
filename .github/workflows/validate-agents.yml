@@ -1,0 +1,44 @@
+name: validate-agents
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  frontmatter:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Parse agent frontmatter
+        run: |
+          pip install pyyaml
+          python - <<'PY'
+          import glob, re, sys, yaml
+          files = sorted(glob.glob(".claude/agents/*.md"))
+          if not files:
+              sys.exit("no agent files found")
+          bad = 0
+          for f in files:
+              text = open(f, encoding="utf-8").read()
+              m = re.match(r"---\n(.*?)\n---\n", text, re.S)
+              if not m:
+                  print(f"FAIL {f}: no frontmatter"); bad += 1; continue
+              try:
+                  d = yaml.safe_load(m.group(1))
+              except yaml.YAMLError as e:
+                  print(f"FAIL {f}: invalid YAML: {e}"); bad += 1; continue
+              missing = [k for k in ("name", "description", "tools") if not d.get(k)]
+              if missing:
+                  print(f"FAIL {f}: missing {missing}"); bad += 1; continue
+              if d["name"] != f.split("/")[-1][:-3]:
+                  print(f"FAIL {f}: name {d['name']!r} does not match file name"); bad += 1; continue
+              print(f"ok   {f}")
+          sys.exit(1 if bad else 0)
+          PY
