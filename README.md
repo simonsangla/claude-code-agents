@@ -36,10 +36,11 @@ Prerequisites:
 ## Examples
 
 - [`examples/collision-fixture/`](examples/collision-fixture): a synthetic fixture with known answers and three deliberate traps, for testing the collision audit. The probe and its answer key are kept in separate files.
-- [`examples/jaffle-shop-recorded-audit.md`](examples/jaffle-shop-recorded-audit.md): a recorded run of the dbt-model-auditor demo on a public dbt project with two seeded defects.
+- [`examples/agent-runs-2026-10-19.md`](examples/agent-runs-2026-10-19.md): each agent run once on a real target (a PR, a live site, a dbt project), what it found and what was checked afterwards. Start here.
+- [`examples/jaffle-shop-recorded-audit.md`](examples/jaffle-shop-recorded-audit.md): what the dbt-model-auditor demo page shows for a public dbt project with two seeded defects.
 - [`examples/self-review-2026-10-19.md`](examples/self-review-2026-10-19.md): an audit and a hostile review of this repo's first commit, with what was fixed.
 
-What is not here: outputs of the review and verification agents on real pull requests. Those runs were on private repositories and are not published.
+What is not here: runs of these agents on private pull requests, any run on a Snowflake account, and any repeat run. The runs above were made by general-purpose subagents following these definition files, not through Claude Code's own agent loading.
 
 ## Related
 
