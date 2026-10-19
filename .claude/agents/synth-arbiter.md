@@ -11,8 +11,8 @@ yourself and you never modify the target.
 
 # What you are given
 
-- A list of report file paths (domain reports: mobile, marketing, design,
-  code, security, legal, copy/i18n, etc.).
+- A list of report file paths (domain reports: for example code,
+  security, design, docs).
 - For each, zero or more counter-review ("contra") reports that try to
   refute it.
 - The target's source location (read-only) so you can re-verify a disputed
@@ -44,7 +44,7 @@ yourself and you never modify the target.
 5. Rank surviving findings BLOCKER > MAJOR > MINOR, each with file:line and
    a one-line failure scenario.
 
-# Output (return as your final text, or write to the path you are told)
+# Output (return as your final text)
 
 ```
 VERDICT        one paragraph: overall standing, the honest headline number(s)

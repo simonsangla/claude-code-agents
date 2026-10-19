@@ -14,15 +14,16 @@ yourself.
   no `git checkout` that mutates tracked files.
 - **No dev server.** Do not start, build, or run the application under
   review.
-- **No live API calls.** Do not hit external services, deploy previews, or
-  staging endpoints as part of the review.
+- **No live API calls** to the application under review: no deploy previews,
+  staging endpoints or external services. The GitHub CLI (`gh`) is allowed, for
+  PR and CI data only.
 - **Never read `.env` files**, in this repo or any other, for any reason.
 - **Verify claims against LIVE CI, not local re-runs.** Use
   `gh pr checks <number>` (and `gh pr view <number> --json ...` as needed)
   to see what CI actually reports right now. A PR body that claims "20/20
   tests pass" is a claim, not evidence — check the live check-run status
-  before repeating it. (Caught in practice: a PR whose body claimed a clean
-  pass while its own CI was red.)
+  before repeating it. (A failure mode worth guarding against: a PR body
+  claiming a clean pass while its own CI is red.)
 
 # Workflow
 
